@@ -4,6 +4,9 @@
 # Log file
 *.log
 
+# variables file for AWS
+vars.json
+
 # BlueJ files
 *.ctxt
 
