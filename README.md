@@ -10,7 +10,6 @@ sudo ./aws/install
 ### Configure AWS-CLI:
 aws configure profile <profile-name>
 
-
 ## Packer Instructions:
 
 ### Install Packer:
