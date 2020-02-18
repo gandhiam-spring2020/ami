@@ -16,7 +16,7 @@ aws configure profile <profile-name>
 ### Install Packer:
 sudo apt install packer
 
-### Validate packer template:
+### Validate Packer template:
 ./packer validate ubuntu-ami.json 
 
 
