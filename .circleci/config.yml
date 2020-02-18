@@ -1,31 +1,48 @@
 version: 2 # use CircleCI 2.0
-jobs: # a collection of steps
-  build:
-
-    working_directory: ~/ami
-
-    steps: # a collection of executable commands
-
+jobs:
+  pr_check:
+    docker: # run the steps with Docker
+      - image: hashicorp/packer:1.1.1
+    working_directory: ~/packer # directory where steps will run 
+    steps:
       - checkout # check out source code to working directory
       - run:
-          name: Install packages
-          command: sudo apt-get update
-      - run:
-          name: Install awscli
-          command: sudo pip install awscli
-      - run:
-          name: Install packer
-          command: sudo apt install packer
-      - run:
           name: Validate AMI
-          command: ./packer validate ubuntu-ami.json
+          command: packer validate ubuntu-ami.json
+
+
+  build_ami:
+    docker: # run the steps with Docker
+      - image: hashicorp/packer:1.1.1
+    working_directory: ~/packer # directory where steps will run
+    steps:
+      - checkout # check out source code to working directory
       - run:
           name: Build AMI
-          command: ./packer build \
-                        -var "aws-region=${AWS_REGION}" \
-                        -var "aws-access_key=${AWS_ACCESS_KEY}" \
-                        -var "aws-secret_key=${AWS_SECRET_KEY}" \
-                        -var "subnet_id=${SUBNET_ID}" \
-                        -var "source_ami=${SOURCE_AMI}" \
-                        -var "ami_users=${AMI_USERS}" \
-                        ubuntu-ami.json
+          command: |
+            echo $AWS_REGION
+            packer build \
+            -var "aws-region=${AWS_REGION}" \
+            -var "aws-access_key=${AWS_ACCESS_KEY}" \
+            -var "aws-secret_key=${AWS_SECRET_KEY}" \
+            -var "subnet_id=${SUBNET_ID}" \
+            -var "source_ami=${SOURCE_AMI}" \
+            -var "ami_users=${AMI_USERS}" \
+            ubuntu-ami.json
+      - run:
+          name: ECHO AMI JOB
+          command: echo $AMI_USERS
+
+
+workflows:
+  version: 2
+  pr-check-workflow:
+    jobs:
+      - pr_check
+  build-ami-workflow:
+    jobs:
+    - build_ami:
+        filters:
+            branches:
+                only:
+                  - master
