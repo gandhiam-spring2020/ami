@@ -1,6 +1,9 @@
 version: 2 # use CircleCI 2.0
 jobs: # a collection of steps
   build:
+
+    working_directory: ~/ami
+
     steps: # a collection of executable commands
 
       - checkout # check out source code to working directory
@@ -14,15 +17,15 @@ jobs: # a collection of steps
           name: Install packer
           command: sudo apt install packer
       - run:
-          name: Validate packer template
+          name: Validate AMI
           command: ./packer validate ubuntu-ami.json
       - run:
           name: Build AMI
           command: ./packer build \
-                   -var "aws-region=${AWS_REGION}" \
-                   -var "aws-access_key=${AWS_ACCESS_KEY}" \
-                   -var "aws-secret_key=${AWS_SECRET_KEY}" \
-                   -var "subnet_id=${SUBNET_ID}" \
-                   -var "source_ami=${SOURCE_AMI}" \
-                   -var "ami_users=${AMI_USERS}" \
-                   ubuntu-ami.json
+                        -var "aws-region=${AWS_REGION}" \
+                        -var "aws-access_key=${AWS_ACCESS_KEY}" \
+                        -var "aws-secret_key=${AWS_SECRET_KEY}" \
+                        -var "subnet_id=${SUBNET_ID}" \
+                        -var "source_ami=${SOURCE_AMI}" \
+                        -var "ami_users=${AMI_USERS}" \
+                        ubuntu-ami.json
