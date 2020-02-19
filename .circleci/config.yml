@@ -8,9 +8,7 @@ jobs:
       - checkout # check out source code to working directory
       - run:
           name: Validate AMI
-          command: |
-            echo $AWS_REGION
-            packer validate \
+          command: packer validate \
             -var "aws-region=${AWS_REGION}" \
             -var "aws-access_key=${AWS_ACCESS_KEY}" \
             -var "aws-secret_key=${AWS_SECRET_KEY}" \
