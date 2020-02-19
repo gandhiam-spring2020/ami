@@ -2,7 +2,7 @@
 
 ## Packer Instructions:
 
-### Install packer:
+### Install Packer:
 sudo apt install packer
 
 ### Validate AMI:
