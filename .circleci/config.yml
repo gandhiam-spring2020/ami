@@ -8,7 +8,16 @@ jobs:
       - checkout # check out source code to working directory
       - run:
           name: Validate AMI
-          command: packer validate ubuntu-ami.json
+          command: |
+            echo $AWS_REGION
+            -var "aws-region=${AWS_REGION}" \
+            -var "aws-access_key=${AWS_ACCESS_KEY}" \
+            -var "aws-secret_key=${AWS_SECRET_KEY}" \
+            -var "subnet_id=${SUBNET_ID}" \
+            -var "source_ami=${SOURCE_AMI}" \
+            -var "ami_users=${AMI_USERS}" \
+            -var "ssh_username=${SSH_USERNAME}"
+            packer validate ubuntu-ami.json
 
 
   build_ami:
@@ -25,6 +34,7 @@ jobs:
             -var "aws-region=${AWS_REGION}" \
             -var "aws-access_key=${AWS_ACCESS_KEY}" \
             -var "aws-secret_key=${AWS_SECRET_KEY}" \
+            -var "ssh_username=${SSH_USERNAME}"
             -var "subnet_id=${SUBNET_ID}" \
             -var "source_ami=${SOURCE_AMI}" \
             -var "ami_users=${AMI_USERS}" \
