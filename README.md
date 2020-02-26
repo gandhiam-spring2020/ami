@@ -1,6 +1,6 @@
 # ami
 Amazon Machine Image is used to deevlop cusomised EC2 instances.
-The project aims at developing an AMI template by installing all the necessary softwares needed for hosting the application on EC2 instance
+The project aims at developing an AMI template by installing all the necessary softwares needed for hosting the application on EC2 instance.
 
 ## Getting Started
 
