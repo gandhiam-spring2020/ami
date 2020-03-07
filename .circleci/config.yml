@@ -41,7 +41,11 @@ jobs:
       - run:
           name: ECHO AMI JOB
           command: echo $AMI_USERS
-
+      
+      - run:
+          name: Install awscli
+          command: sudo pip install awscli
+      
 
 workflows:
   version: 2
