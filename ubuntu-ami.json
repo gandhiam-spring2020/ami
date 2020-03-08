@@ -81,11 +81,9 @@
                 "sudo systemctl status tomcat",
                 "sudo apt-get install ruby -y",
                 "cd /home/ubuntu",
-                "wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install",
+                "wget https://aws-codedeploy-{{user `aws_region`}}.s3.{{user `aws_region`}}.amazonaws.com/latest/install",
                 "chmod +x ./install",
-                "sudo ./install auto",
-                "sudo service codedeploy-agent start",
-                "sudo service codedeploy-agent status"
+                "sudo ./install auto"
 
             ]
         }
