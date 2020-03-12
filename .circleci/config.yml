@@ -18,6 +18,7 @@ jobs:
             -var "ami_users=${AMI_USERS}" \
             ubuntu-ami.json
 
+
   build_ami:
     docker: # run the steps with Docker
       - image: hashicorp/packer:1.1.1
