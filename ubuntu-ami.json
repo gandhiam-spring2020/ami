@@ -78,7 +78,13 @@
                 "sudo systemctl daemon-reload",
                 "sudo systemctl enable tomcat.service",
                 "sudo systemctl start tomcat.service",
-                "sudo systemctl status tomcat"
+                "sudo systemctl status tomcat",
+                "sudo apt-get install ruby -y",
+                "cd /home/ubuntu",
+                "wget https://aws-codedeploy-{{user `aws_region`}}.s3.{{user `aws_region`}}.amazonaws.com/latest/install",
+                "chmod +x ./install",
+                "sudo ./install auto"
+
             ]
         }
     ]

@@ -38,10 +38,6 @@ jobs:
             -var "source_ami=${SOURCE_AMI}" \
             -var "ami_users=${AMI_USERS}" \
             ubuntu-ami.json
-      - run:
-          name: ECHO AMI JOB
-          command: echo $AMI_USERS
-
 
 workflows:
   version: 2
