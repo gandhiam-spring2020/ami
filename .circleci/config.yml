@@ -30,9 +30,9 @@ jobs:
           command: |
             echo $AWS_REGION
             packer build \
-            -var "aws-region=${AWS_REGION}" \
-            -var "aws-access_key=${AWS_ACCESS_KEY}" \
-            -var "aws-secret_key=${AWS_SECRET_KEY}" \
+            -var "aws_region=${AWS_REGION}" \
+            -var "aws_access_key=${AWS_ACCESS_KEY}" \
+            -var "aws_secret_key=${AWS_SECRET_KEY}" \
             -var "ssh_username=${SSH_USERNAME}" \
             -var "subnet_id=${SUBNET_ID}" \
             -var "source_ami=${SOURCE_AMI}" \
