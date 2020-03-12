@@ -19,7 +19,7 @@ jobs:
             ubuntu-ami.json
 
 
-  build_ami:
+  build:
     docker: # run the steps with Docker
       - image: hashicorp/packer:1.1.1
     working_directory: ~/packer # directory where steps will run
@@ -44,9 +44,9 @@ workflows:
   pr-check-workflow:
     jobs:
       - pr_check
-  build-ami-workflow:
+  build-workflow:
     jobs:
-    - build_ami:
+    - build:
         filters:
             branches:
                 only:
