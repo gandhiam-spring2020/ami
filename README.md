@@ -11,7 +11,7 @@ The project aims at developing an AMI template by installing all the necessary s
 
 ### Prerequisites
 
-1. Have used hashicorp/packer:1.1.1 image for installing packer on circleci
+Have used hashicorp/packer:1.1.1 image for installing packer on circleci
 
 ## Packer instructions:
 
